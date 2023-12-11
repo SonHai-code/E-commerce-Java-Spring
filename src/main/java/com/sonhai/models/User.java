@@ -64,6 +64,21 @@ public class User {
     public User() {
     }
 
+    public User(Long id, String firstName, String lastName, String password, String email, String role, String mobile, List<Address> addresses, List<PaymentInformation> paymentInformations, List<Rating> ratings, List<Review> reviews, LocalDateTime createdAt) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+        this.mobile = mobile;
+        this.addresses = addresses;
+        this.paymentInformations = paymentInformations;
+        this.ratings = ratings;
+        this.reviews = reviews;
+        this.createdAt = createdAt;
+    }
+
     public Long getId() {
         return id;
     }
