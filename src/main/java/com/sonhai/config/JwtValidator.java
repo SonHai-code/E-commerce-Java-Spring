@@ -21,10 +21,10 @@ import java.util.List;
 
 /* Validate the JWT (Json Web Token in incoming Http requests) */
 public class JwtValidator extends OncePerRequestFilter {
-    /*
-    Filter and get executed for each Http requests
-    Perform JWT validation and sets the authentication.
-    **/
+  /**
+   * Filter and get executed for each Http requests
+   * Perform JWT validation and sets the authentication.
+   **/
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {

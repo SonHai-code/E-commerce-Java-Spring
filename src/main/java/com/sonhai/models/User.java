@@ -7,19 +7,20 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-    A person has multiple addresses.
-    User - Address: 1 - n.
+/**
+ *     A person has multiple addresses.
+       User - Address: 1 - n.
 
-    Many people have multiple payment information.
-    User - PaymentInformation: m - n.
+ *     Many people have multiple payment information.
+       User - PaymentInformation: 1 - n.
 
-    A person can rate multiple products.
-    User - Rating: 1 - n.
+ *     A person can rate multiple products.
+       User - Rating: 1 - n.
 
-    A person can review multiple products.
-    User - Review: 1 - n.
-* */
+ *     A person can review multiple products.
+       User - Review: 1 - n.
+ */
+
 @Entity
 public class User {
     @Id
