@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * All logics about the User Model.
+ * */
+
 @Service
 public class CustomeUserServiceImpl implements UserDetailsService {
 
@@ -20,7 +24,6 @@ public class CustomeUserServiceImpl implements UserDetailsService {
     public CustomeUserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
 
 
     @Override

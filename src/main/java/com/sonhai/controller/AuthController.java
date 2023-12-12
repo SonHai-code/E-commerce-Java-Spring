@@ -4,18 +4,25 @@ import com.sonhai.config.JwtProvider;
 import com.sonhai.exception.UserException;
 import com.sonhai.models.User;
 import com.sonhai.repository.UserRepository;
+import com.sonhai.request.LoginRequest;
 import com.sonhai.response.AuthResponse;
+import com.sonhai.services.CustomeUserServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Check the authentication from user's input then send back the token for the user when it's valid.
+ * */
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -25,9 +32,14 @@ public class AuthController {
 
     private PasswordEncoder passwordEncoder;
 
-    public AuthController(UserRepository userRepository) {
+    private CustomeUserServiceImpl customeUserService;
+
+    public AuthController(UserRepository userRepository, CustomeUserServiceImpl customeUserServic, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.customeUserService = customeUserService;
+        this.passwordEncoder = passwordEncoder;
     }
+
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) throws UserException {
         String email = user.getEmail();
@@ -64,6 +76,33 @@ public class AuthController {
 
         return new ResponseEntity<>(authResponse, HttpStatus.CREATED);
     }
+    @PostMapping("/signin")
+    public ResponseEntity<AuthResponse> loginUserHandler(@RequestBody LoginRequest loginRequest){
+        String username = loginRequest.getEmail();
+        String password = loginRequest.getPassword();
 
-    public ResponseEntity<AuthResponse>
+        Authentication authentication = authenticate(username, password);
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String token = jwtProvider.generateToken(authentication);
+
+        AuthResponse authResponse = new AuthResponse(token, "Signin Successfully!");
+
+        return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.CREATED);
+    }
+
+    /* Check the user whether it exist */
+    private Authentication authenticate(String username, String password) {
+        UserDetails userDetails = customeUserService.loadUserByUsername(username);
+
+        if (userDetails == null) {
+            throw new BadCredentialsException("Username is incorrect. Try again!");
+        }
+
+        if (!passwordEncoder.matches(password, userDetails.getPassword())){
+            throw new BadCredentialsException("The password is incorrect. Try again!");
+        }
+        return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+    }
 }
