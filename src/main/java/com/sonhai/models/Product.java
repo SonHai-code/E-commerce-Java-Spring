@@ -22,7 +22,7 @@ import java.util.Set;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     private String title;
 
@@ -69,7 +69,10 @@ public class Product {
 
     private LocalDateTime createdAt;
 
-    public Product(String id, String title, String description, int price, int discountedPrice, int discountPresent, int quantity, String brand, String color, String imageUrl, Set<Size> sizes, List<Rating> ratings, List<Review> reviews, int numRatings, Category category, LocalDateTime createdAt) {
+    public Product() {
+    }
+
+    public Product(Long id, String title, String description, int price, int discountedPrice, int discountPresent, int quantity, String brand, String color, String imageUrl, Set<Size> sizes, List<Rating> ratings, List<Review> reviews, int numRatings, Category category, LocalDateTime createdAt) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -88,14 +91,15 @@ public class Product {
         this.createdAt = createdAt;
     }
 
-    public Product() {
+    public Product(Long id) {
+        this.id = id;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

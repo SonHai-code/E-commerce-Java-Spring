@@ -16,7 +16,7 @@ import jakarta.validation.constraints.Size;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     @NotNull
     @Size(max = 50)
@@ -28,21 +28,25 @@ public class Category {
 
     private int level;
 
-    public Category() {
+    public Category(Long id) {
+        this.id = id;
     }
 
-    public Category(String id, String name, Category parentCategory, int level) {
+    public Category(Long id, String name, Category parentCategory, int level) {
         this.id = id;
         this.name = name;
         this.parentCategory = parentCategory;
         this.level = level;
     }
 
-    public String getId() {
+    public Category() {
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -69,5 +73,4 @@ public class Category {
     public void setLevel(int level) {
         this.level = level;
     }
-
 }
