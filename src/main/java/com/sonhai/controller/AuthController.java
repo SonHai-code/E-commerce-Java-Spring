@@ -65,6 +65,9 @@ public class AuthController {
         /* Save the user to database */
         User savedUser = userRepository.save(createdUser);
 
+        /**
+         * Decode and validate the Bearer Token.
+         * */
         /* Setting authentication through user email and password */
         Authentication authentication = new UsernamePasswordAuthenticationToken(savedUser.getEmail(), savedUser.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);
