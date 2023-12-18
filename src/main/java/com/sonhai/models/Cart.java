@@ -6,10 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * A cart can have multiple cart items
+ * A cart can have multiple cart items.
  * Cart - CartItem: 1 - n.
- *
- *
  * */
 @Entity
 public class Cart {

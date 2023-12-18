@@ -11,10 +11,10 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService{
 
     private CartRepository cartRepository;
-    private CartItemService cartItemService;
+    private CartService cartItemService;
     private ProductService productService;
 
-    public OrderServiceImpl(CartRepository cartRepository, CartItemService cartItemService, ProductService productService) {
+    public OrderServiceImpl(CartRepository cartRepository, CartService cartItemService, ProductService productService) {
         this.cartRepository = cartRepository;
         this.cartItemService = cartItemService;
         this.productService = productService;

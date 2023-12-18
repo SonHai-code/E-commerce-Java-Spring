@@ -3,6 +3,14 @@ package com.sonhai.models;
 
 import jakarta.persistence.*;
 
+/**
+ * A cart can have multiple items
+ * Cart - CartItem: 1 - n
+ *
+ * The user can have many card items for a product.
+ *
+ * **/
+
 @Entity
 public class CartItem {
     @Id
