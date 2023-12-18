@@ -19,6 +19,9 @@ import java.util.List;
 
  *     A person can review multiple products.
        User - Review: 1 - n.
+
+        A person can have multiple orders.
+        User - Order: 1 - n.
  */
 
 @Entity
