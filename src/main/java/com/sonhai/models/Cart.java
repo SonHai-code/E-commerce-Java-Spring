@@ -8,6 +8,8 @@ import java.util.Set;
 /**
  * A cart can have multiple cart items.
  * Cart - CartItem: 1 - n.
+ *
+ * A Person just can have only one cart.
  * */
 @Entity
 public class Cart {
