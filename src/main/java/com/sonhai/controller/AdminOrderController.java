@@ -27,7 +27,7 @@ public class AdminOrderController {
 
     /* Confirmed the order */
     @PutMapping("/{orderId}/confirmed")
-    public ResponseEntity<Order> ConfirmedOrderHandler(@PathVariable Long orderId,
+    public ResponseEntity<Order> confirmedOrderHandler(@PathVariable Long orderId,
                                                        @RequestHeader("Authorization") String jwt) throws OrderException {
         Order order = orderService.confirmedOrder(orderId);
         return new ResponseEntity<>(order, HttpStatus.OK);
@@ -35,7 +35,7 @@ public class AdminOrderController {
 
     /* Shipped the order */
     @PutMapping("/{orderId}/shipped")
-    public ResponseEntity<Order> ShippedOrderHandler(@PathVariable Long orderId,
+    public ResponseEntity<Order> shippedOrderHandler(@PathVariable Long orderId,
                                                      @RequestHeader("Authorization") String jwt) throws OrderException {
         Order order = orderService.shippedOrder(orderId);
 
@@ -44,7 +44,7 @@ public class AdminOrderController {
 
     /* Delivered the order */
     @PutMapping("/{orderId}/delivered")
-    public ResponseEntity<Order> DeliveredOrderHandler(@PathVariable Long orderId,
+    public ResponseEntity<Order> deliveredOrderHandler(@PathVariable Long orderId,
                                                        @RequestHeader("Authorization") String jwt) throws OrderException {
     Order order = orderService.deliveredOrder(orderId);
     return new ResponseEntity<>(order, HttpStatus.OK);
@@ -52,7 +52,7 @@ public class AdminOrderController {
 
     /* Cancel the order */
     @PutMapping("/{orderId}/canceled")
-    public ResponseEntity<Order> CanceledOrderHandler(@PathVariable Long orderId,
+    public ResponseEntity<Order> canceledOrderHandler(@PathVariable Long orderId,
                                                       @RequestHeader("Authorization") String jwt) throws OrderException{
         Order order = orderService.canceledOrder(orderId);
         return new ResponseEntity<>(order, HttpStatus.OK);
@@ -60,7 +60,7 @@ public class AdminOrderController {
 
     /* Delete the order */
     @DeleteMapping("/{orderId}/delete")
-    public ResponseEntity<ApiResponse> DeleteOrderHandler(@PathVariable Long orderId,
+    public ResponseEntity<ApiResponse> deleteOrderHandler(@PathVariable Long orderId,
                                                           @RequestHeader("Authorization") String jwt) throws OrderException{
         orderService.deleteOrder(orderId);
 
