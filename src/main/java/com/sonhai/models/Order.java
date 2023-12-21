@@ -36,7 +36,7 @@ public class Order {
 
     private Integer totalDiscountedPrice;
 
-    private Integer discount;
+    private Integer discounted;
 
     private String orderStatus;
 
@@ -47,7 +47,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long id, String orderID, User user, List<OrderItem> orderItems, LocalDateTime orderDate, LocalDateTime deliveryDate, Address shippingAddress, PaymentDetails paymentDetails, double totalPrice, Integer totalDiscountedPrice, Integer discount, String orderStatus, int totalItems, LocalDateTime createdAt) {
+    public Order(Long id, String orderID, User user, List<OrderItem> orderItems, LocalDateTime orderDate, LocalDateTime deliveryDate, Address shippingAddress, PaymentDetails paymentDetails, double totalPrice, Integer totalDiscountedPrice, Integer discounted, String orderStatus, int totalItems, LocalDateTime createdAt) {
         this.id = id;
         this.orderID = orderID;
         this.user = user;
@@ -58,7 +58,7 @@ public class Order {
         this.paymentDetails = paymentDetails;
         this.totalPrice = totalPrice;
         this.totalDiscountedPrice = totalDiscountedPrice;
-        this.discount = discount;
+        this.discounted = discounted;
         this.orderStatus = orderStatus;
         this.totalItems = totalItems;
         this.createdAt = createdAt;
@@ -144,12 +144,12 @@ public class Order {
         this.totalDiscountedPrice = totalDiscountedPrice;
     }
 
-    public Integer getDiscount() {
-        return discount;
+    public Integer getDiscounted() {
+        return discounted;
     }
 
-    public void setDiscount(Integer discount) {
-        this.discount = discount;
+    public void setDiscounted(Integer discounted) {
+        this.discounted = discounted;
     }
 
     public String getOrderStatus() {
