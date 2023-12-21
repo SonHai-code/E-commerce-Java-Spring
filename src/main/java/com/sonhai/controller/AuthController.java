@@ -2,11 +2,13 @@ package com.sonhai.controller;
 
 import com.sonhai.config.JwtProvider;
 import com.sonhai.exception.UserException;
+import com.sonhai.models.Cart;
 import com.sonhai.models.User;
 import com.sonhai.repository.UserRepository;
 import com.sonhai.request.LoginRequest;
 import com.sonhai.response.AuthResponse;
-import com.sonhai.services.CustomeUserServiceImpl;
+import com.sonhai.services.CartService;
+import com.sonhai.services.CustomUserServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -32,12 +34,16 @@ public class AuthController {
 
     private PasswordEncoder passwordEncoder;
 
-    private CustomeUserServiceImpl customeUserService;
+    private CustomUserServiceImpl customUserService;
 
-    public AuthController(UserRepository userRepository, CustomeUserServiceImpl customeUserServic, PasswordEncoder passwordEncoder) {
+    private CartService cartService;
+
+    public AuthController(UserRepository userRepository, CustomUserServiceImpl customUserService,
+                          PasswordEncoder passwordEncoder, CartService cartService) {
         this.userRepository = userRepository;
-        this.customeUserService = customeUserService;
+        this.customUserService = customUserService;
         this.passwordEncoder = passwordEncoder;
+        this.cartService = cartService;
     }
 
     @PostMapping("/signup")
@@ -64,6 +70,7 @@ public class AuthController {
 
         /* Save the user to database */
         User savedUser = userRepository.save(createdUser);
+        Cart cart = cartService.createCart(savedUser);
 
         /**
          * Decode and validate the Bearer Token.
@@ -97,7 +104,7 @@ public class AuthController {
 
     /* Check the user whether it exist */
     private Authentication authenticate(String username, String password) {
-        UserDetails userDetails = customeUserService.loadUserByUsername(username);
+        UserDetails userDetails = customUserService.loadUserByUsername(username);
 
         if (userDetails == null) {
             throw new BadCredentialsException("Username is incorrect. Try again!");

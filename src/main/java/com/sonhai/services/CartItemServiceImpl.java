@@ -5,9 +5,10 @@ import com.sonhai.exception.UserException;
 import com.sonhai.models.*;
 import com.sonhai.repository.CartItemRepository;
 import com.sonhai.repository.CartRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public class CartItemServiceImpl implements CartItemService{
     private CartItemRepository cartItemRepository;
     private UserService userService;

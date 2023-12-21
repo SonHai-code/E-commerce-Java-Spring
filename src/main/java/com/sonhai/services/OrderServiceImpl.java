@@ -5,9 +5,11 @@ import com.sonhai.models.Address;
 import com.sonhai.models.Order;
 import com.sonhai.models.User;
 import com.sonhai.repository.CartRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OrderServiceImpl implements OrderService{
 
     private CartRepository cartRepository;
@@ -22,6 +24,8 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public Order createOrder(User user, Address shippingAddress) {
+
+
         return null;
     }
 

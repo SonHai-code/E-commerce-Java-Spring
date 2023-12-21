@@ -3,6 +3,7 @@ package com.sonhai.controller;
 import com.sonhai.exception.ProductException;
 import com.sonhai.models.Product;
 import com.sonhai.services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class ProductController {
+    @Autowired
     private ProductService productService;
 
     @GetMapping("/products")
@@ -42,12 +44,12 @@ public class ProductController {
         return new ResponseEntity<>(product, HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/products/search")
-    public ResponseEntity<List<Product>> searchProductsHandler(@RequestParam String query){
-        List<Product> products = productService.searchProduct(query);
-
-        return new ResponseEntity<>(products, HttpStatus.OK);
-    }
+//    @GetMapping("/products/search")
+//    public ResponseEntity<List<Product>> searchProductsHandler(@RequestParam String query){
+//        List<Product> products = productService.searchProduct(query);
+//
+//        return new ResponseEntity<>(products, HttpStatus.OK);
+//    }
 
 
 }
